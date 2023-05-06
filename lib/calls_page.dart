@@ -24,10 +24,6 @@ class _CallsPageState extends State<CallsPage> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
-                "",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
             ],
           ),
         ),

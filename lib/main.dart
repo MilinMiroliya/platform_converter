@@ -1,7 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_converter/chats_page.dart';
-import 'package:platform_converter/main_provider.dart';
 import 'package:provider/provider.dart';
+import 'main_provider.dart';
 
 void main() {
   runApp(
@@ -14,57 +14,103 @@ void main() {
 
 class MyApp extends StatelessWidget {
   @override
+  int index = 0;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-      ),
+      theme: (Provider.of<MainProvider>(context, listen: false).isDarkView)
+          ? ThemeData.dark(useMaterial3: true)
+          : ThemeData.light(
+              useMaterial3: true,
+            ),
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 70,
           actions: [
-            Switch(
-              value: Provider.of<MainProvider>(context, listen: false).isIOS,
-              onChanged: (val) {
-                Provider.of<MainProvider>(context, listen: false)
-                    .changePlatform();
+            IconButton(
+              onPressed: () {
+                Provider.of<MainProvider>(context, listen: false).changeTheme();
               },
+              icon: Icon(CupertinoIcons.sun_min),
             ),
+            (Provider.of<MainProvider>(context, listen: false).isIOS)
+                ? CupertinoSwitch(
+                    onChanged: (val) {
+                      Provider.of<MainProvider>(context, listen: false)
+                          .changePlatform();
+                    },
+                    value: Provider.of<MainProvider>(context).isIOS,
+                  )
+                : Switch(
+                    value:
+                        Provider.of<MainProvider>(context, listen: false).isIOS,
+                    onChanged: (val) {
+                      Provider.of<MainProvider>(context, listen: false)
+                          .changePlatform();
+                    },
+                  ),
           ],
-          title: Text("Platform Converter"),
+          title: const Text("Platform Converter"),
         ),
-        body: Column(
-          children: [
-            BottomNavigationBar(
-              currentIndex: 0,
-              items: [
-                BottomNavigationBarItem(
-                  label: "ADD",
-                  icon: Icon(
-                    Icons.account_circle_rounded,
-                  ),
+        body: DefaultTabController(
+          length: 4,
+          child: Consumer<MainProvider>(
+            builder: (context, provider, child) => Column(
+              children: [
+                TabBar(
+                  onTap: (int val) {
+                    index = val;
+
+                    provider.pageList.elementAt(val);
+
+                    // ignore: avoid_print
+                    print(val);
+                  },
+                  tabs: const [
+                    Tab(
+                      icon: Icon(
+                        Icons.person_add_alt_1_outlined,
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        "CHATS",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        "CALLS",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        "SETTINGS",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                BottomNavigationBarItem(
-                  label: "Chats",
-                  icon: Icon(
-                    Icons.chat_rounded,
-                  ),
-                ),
-                BottomNavigationBarItem(
-                  label: "Calls",
-                  icon: Icon(
-                    Icons.call_end_rounded,
-                  ),
-                ),
-                // BottomNavigationBarItem(
-                //   label: "Settings",
-                //   icon: Icon(
-                //     Icons.settings,
-                //   ),
+                // CustomScrollView(
+                //   slivers: [
+                //     provider.pageList.elementAt(index),
+                //   ],
+                //
                 // ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
