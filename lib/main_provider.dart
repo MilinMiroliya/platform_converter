@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class MainProvider extends ChangeNotifier {
   bool isIOS = true;
   bool isDarkView = false;
+  String selectedDate = "";
+  String selectedTime = "";
 
   changePlatform() {
     isIOS = !isIOS;
@@ -14,66 +16,13 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Widget> pageList = [
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'No any chats yet...',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    ),
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'No any chats yet...',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    ),
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'No any calls yet...',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    ),
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'No any calls yet...',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
-    ),
-  ];
+  setSelectedDate(DateTime selectedDate) {
+    this.selectedDate = selectedDate.toString();
+    notifyListeners();
+  }
+
+  setSelectedTime(TimeOfDay selectedTime) {
+    this.selectedTime = selectedTime.toString();
+    notifyListeners();
+  }
 }
