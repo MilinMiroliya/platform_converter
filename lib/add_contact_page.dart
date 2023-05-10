@@ -272,9 +272,6 @@ class _AddContactPageState extends State<AddContactPage> {
                         image: Global.image,
                       );
                       Global.allContacts.add(c1);
-                      setState(() {
-                        provider.pageList[1];
-                      });
                     }
 
                     setState(
