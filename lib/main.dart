@@ -109,10 +109,7 @@ class _MyAppState extends State<MyApp> {
             ),
             body: TabBarView(
               children: [
-                const AddContactPage(),
-                ChatsPage(),
-                CallsPage(),
-                SettingsPage(),
+                ...provider.pageList,
               ],
             ),
           ),

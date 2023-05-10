@@ -186,7 +186,7 @@ class _AddContactPageState extends State<AddContactPage> {
                         ),
                         TextFormField(
                           onSaved: (val) {
-                            Global.phone = val;
+                            Global.chat = val;
                           },
                           controller: chatsConversationController,
                           keyboardType: TextInputType.number,
@@ -224,21 +224,13 @@ class _AddContactPageState extends State<AddContactPage> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: (provider.selectedDate != null)
-                          ? Text(
-                              "${provider.selectedDate}",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
-                            )
-                          : Text(
-                              "Pick Date",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
-                            ),
+                      child: Text(
+                        provider.selectedDate,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -248,7 +240,7 @@ class _AddContactPageState extends State<AddContactPage> {
                       width: 5,
                     ),
                     IconButton(
-                      icon: Icon(Icons.access_time_rounded),
+                      icon: const Icon(Icons.access_time_rounded),
                       onPressed: () {
                         showTimePicker(
                           context: context,
@@ -258,21 +250,13 @@ class _AddContactPageState extends State<AddContactPage> {
                     ),
                     Container(
                       alignment: Alignment.center,
-                      child: (provider.selectedTime == null)
-                          ? Text(
-                              "Pick Time",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
-                            )
-                          : Text(
-                              "${provider.selectedTime}",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                              ),
-                            ),
+                      child: Text(
+                        provider.selectedTime,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -288,7 +272,9 @@ class _AddContactPageState extends State<AddContactPage> {
                         image: Global.image,
                       );
                       Global.allContacts.add(c1);
-                      Navigator.of(context).pop();
+                      setState(() {
+                        provider.pageList[1];
+                      });
                     }
 
                     setState(
@@ -299,14 +285,21 @@ class _AddContactPageState extends State<AddContactPage> {
 
                         phoneNumberController.clear();
                         chatsConversationController.clear();
+
+                        print(Global.firstName);
+                        print(Global.phone);
+                        print(Global.chat);
+                        print(Global.image);
+
                         Global.firstName = null;
                         Global.phone = null;
                         Global.chat = null;
-                        Global.image = null;
+                        provider.selectedDate;
+                        provider.selectedTime;
                       },
                     );
                   },
-                  child: Text("Save"),
+                  child: const Text("Save"),
                 ),
               ],
             ),

@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'main_provider.dart';
 
 class CallsPage extends StatefulWidget {
+  const CallsPage({super.key});
+
   @override
   State<CallsPage> createState() => _CallsPageState();
 }
@@ -15,8 +17,8 @@ class _CallsPageState extends State<CallsPage> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
+            children: const <Widget>[
+              Text(
                 'No any calls yet...',
                 style: TextStyle(
                   color: Colors.black,
