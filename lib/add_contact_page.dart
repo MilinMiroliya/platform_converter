@@ -52,11 +52,11 @@ class _AddContactPageState extends State<AddContactPage> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Align(
+                              title: const Align(
                                 alignment: Alignment.topLeft,
                                 child: Text("Options"),
                               ),
-                              content: Text(
+                              content: const Text(
                                 "Choose an option to add photo",
                               ),
                               icon: Align(

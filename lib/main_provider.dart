@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class MainProvider extends ChangeNotifier {
   bool isIOS = false;
   bool isDarkView = false;
+  bool isUpdate = false;
   String selectedDate = "Pick Date";
   String selectedTime = "Pick Time";
 
@@ -14,6 +15,11 @@ class MainProvider extends ChangeNotifier {
 
   changeTheme() {
     isDarkView = !isDarkView;
+    notifyListeners();
+  }
+
+  changeStatus() {
+    isUpdate = !isUpdate;
     notifyListeners();
   }
 
