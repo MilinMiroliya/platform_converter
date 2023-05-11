@@ -1,14 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_converter/add_contact_page_ios.dart';
-import 'package:platform_converter/settings_page.dart';
-import 'add_contact_page.dart';
-import 'calls_page.dart';
-import 'chats_page.dart';
 
 class MainProvider extends ChangeNotifier {
   bool isIOS = true;
-  bool isDarkView = false;
+  late bool isDarkView = true;
+
   String selectedDate = "Pick Date";
   String selectedTime = "Pick Time";
 
@@ -30,11 +26,5 @@ class MainProvider extends ChangeNotifier {
   setSelectedTime(TimeOfDay selectedTime) {
     this.selectedTime = selectedTime.toString();
     notifyListeners();
-  }
-
-  shoIOSDatePicker() {
-    return CupertinoDatePicker(onDateTimeChanged: (val) {
-      this.selectedDate = val;
-    });
   }
 }

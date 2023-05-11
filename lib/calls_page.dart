@@ -17,11 +17,11 @@ class _CallsPageState extends State<CallsPage> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Text(
                 'No any calls yet...',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: (provider.isDarkView) ? Colors.white : Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),

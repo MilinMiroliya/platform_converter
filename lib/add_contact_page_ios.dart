@@ -30,22 +30,10 @@ TextStyle hintStyle = TextStyle(
 
 class _AddContactPageIOSState extends State<AddContactPageIOS> {
   @override
-  void initState() {
-    super.initState();
-    firstNameController = TextEditingController(text: 'Enter First Name');
-  }
-
-  @override
-  void dispose() {
-    firstNameController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Consumer<MainProvider>(
-        builder: (context, provider, child) => Container(
+    return Consumer<MainProvider>(
+      builder: (context, provider, child) => CupertinoPageScaffold(
+        child: Container(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
             child: Column(
@@ -153,12 +141,20 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          "Enter First Name",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
                         CupertinoTextFormFieldRow(
                           controller: firstNameController,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
-                              color: Colors.black,
+                              color: (provider.isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           ),
                           onSaved: (val) {
@@ -172,8 +168,14 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                           },
                           textInputAction: TextInputAction.next,
                         ),
-                        SizedBox(
-                          height: 10,
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Enter Phone Number",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                         CupertinoTextFormFieldRow(
                           onSaved: (val) {
@@ -194,12 +196,20 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
-                              color: Colors.black,
+                              color: (provider.isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: 10,
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Enter Chat Conversation",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
                         ),
                         CupertinoTextFormFieldRow(
                           onSaved: (val) {
@@ -211,7 +221,9 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
-                              color: Colors.black,
+                              color: (provider.isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                           ),
                         ),
@@ -219,31 +231,44 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   height: 16,
-                // ),
                 Row(
                   children: [
                     SizedBox(
                       width: 20,
                     ),
                     IconButton(
-                      icon: Icon(Icons.calendar_month_rounded),
+                      icon: Icon(CupertinoIcons.calendar),
                       onPressed: () {
-                        showDatePicker(
+                        showCupertinoModalPopup(
                           context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1900),
-                          lastDate: DateTime(3000),
-                        ).then(
-                          (value) => provider.setSelectedDate(value!),
+                          builder: (context) => Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            height: 300,
+                            width: double.infinity,
+                            child: CupertinoDatePicker(
+                              initialDateTime: DateTime.now(),
+                              minimumYear: 1900,
+                              maximumYear: 3000,
+                              mode: CupertinoDatePickerMode.date,
+                              onDateTimeChanged: (val) {
+                                setState(() {
+                                  provider.selectedDate = val.toString();
+                                });
+                                // print(provider.selectedDate);
+                              },
+                            ),
+                          ),
                         );
                       },
                     ),
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        provider.selectedDate,
+                        (provider.selectedDate == "Pick Date")
+                            ? provider.selectedDate.substring(0, 9)
+                            : provider.selectedDate.substring(0, 10),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
@@ -262,7 +287,7 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                       width: 20,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.access_time_rounded),
+                      icon: const Icon(CupertinoIcons.clock),
                       onPressed: () {
                         showTimePicker(
                           context: context,
@@ -286,7 +311,13 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                     ),
                   ],
                 ),
-                ElevatedButton(
+                SizedBox(
+                  height: 20,
+                ),
+                CupertinoButton(
+                  color: (provider.isDarkView)
+                      ? Colors.white.withOpacity(0.9)
+                      : Colors.grey.withOpacity(0.5),
                   onPressed: () {
                     if (addContactKey.currentState!.validate()) {
                       addContactKey.currentState!.save();
@@ -322,7 +353,12 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                       },
                     );
                   },
-                  child: const Text("Save"),
+                  child: Text(
+                    "Save",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ],
             ),

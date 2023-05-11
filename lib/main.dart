@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_converter/settings_page.dart';
+import 'package:platform_converter/settings_page_ios.dart';
 import 'package:provider/provider.dart';
 import 'add_contact_page.dart';
 import 'add_contact_page_ios.dart';
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   @override
   int index = 0;
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -42,11 +44,12 @@ class _MyAppState extends State<MyApp> {
           initialIndex: 1,
           child: Scaffold(
             appBar: AppBar(
-              bottom: const TabBar(
+              bottom: TabBar(
                 tabs: [
                   Tab(
                     icon: Icon(
                       Icons.person_add_alt_1_outlined,
+                      color: (provider.isDarkView) ? Colors.white : null,
                     ),
                   ),
                   Tab(
@@ -54,6 +57,7 @@ class _MyAppState extends State<MyApp> {
                       "CHATS",
                       style: TextStyle(
                         fontSize: 14,
+                        color: (provider.isDarkView) ? Colors.white : null,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -63,6 +67,7 @@ class _MyAppState extends State<MyApp> {
                       "CALLS",
                       style: TextStyle(
                         fontSize: 14,
+                        color: (provider.isDarkView) ? Colors.white : null,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -72,6 +77,7 @@ class _MyAppState extends State<MyApp> {
                       "SETTINGS",
                       style: TextStyle(
                         fontSize: 14,
+                        color: (provider.isDarkView) ? Colors.white : null,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -115,7 +121,9 @@ class _MyAppState extends State<MyApp> {
                     : AddContactPage(),
                 ChatsPage(),
                 CallsPage(),
-                SettingsPage(),
+                (Provider.of<MainProvider>(context, listen: false).isIOS)
+                    ? SettingsPageIOS()
+                    : SettingsPage(),
               ],
             ),
           ),

@@ -157,7 +157,14 @@ class _AddContactPageState extends State<AddContactPage> {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: "Full Name",
-                            icon: Icon(Icons.person),
+                            icon: Icon(
+                              Icons.person,
+                              color: (Provider.of<MainProvider>(context,
+                                          listen: false)
+                                      .isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -180,7 +187,14 @@ class _AddContactPageState extends State<AddContactPage> {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            icon: Icon(Icons.phone),
+                            icon: Icon(
+                              Icons.phone,
+                              color: (Provider.of<MainProvider>(context,
+                                          listen: false)
+                                      .isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
                             border: OutlineInputBorder(),
                             hintText: "Phone Number",
                           ),
@@ -198,7 +212,14 @@ class _AddContactPageState extends State<AddContactPage> {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: "Chat Conversation",
-                            icon: Icon(Icons.chat_outlined),
+                            icon: Icon(
+                              Icons.chat_outlined,
+                              color: (Provider.of<MainProvider>(context,
+                                          listen: false)
+                                      .isDarkView)
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
                           ),
                         ),
                       ],
@@ -214,7 +235,14 @@ class _AddContactPageState extends State<AddContactPage> {
                       width: 5,
                     ),
                     IconButton(
-                      icon: Icon(Icons.calendar_month_rounded),
+                      icon: Icon(
+                        Icons.calendar_month_rounded,
+                        color:
+                            (Provider.of<MainProvider>(context, listen: false)
+                                    .isDarkView)
+                                ? Colors.white
+                                : Colors.black,
+                      ),
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -248,7 +276,14 @@ class _AddContactPageState extends State<AddContactPage> {
                       width: 5,
                     ),
                     IconButton(
-                      icon: const Icon(Icons.access_time_rounded),
+                      icon: Icon(
+                        Icons.access_time_rounded,
+                        color:
+                            (Provider.of<MainProvider>(context, listen: false)
+                                    .isDarkView)
+                                ? Colors.white
+                                : Colors.black,
+                      ),
                       onPressed: () {
                         showTimePicker(
                           context: context,
@@ -259,7 +294,9 @@ class _AddContactPageState extends State<AddContactPage> {
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        provider.selectedTime,
+                        (provider.selectedDate == "Pick Date")
+                            ? provider.selectedDate.substring(0, 9)
+                            : provider.selectedDate.substring(0, 10),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
