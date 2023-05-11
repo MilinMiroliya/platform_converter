@@ -88,12 +88,17 @@ class _MyAppState extends State<MyApp> {
               actions: [
                 IconButton(
                   onPressed: () {
-                    setState(() {
-                      Provider.of<MainProvider>(context, listen: false)
-                          .changeTheme();
-                    });
+                    setState(
+                      () {
+                        Provider.of<MainProvider>(context, listen: false)
+                            .changeTheme();
+                      },
+                    );
                   },
-                  icon: Icon(CupertinoIcons.sun_min),
+                  icon: Icon(
+                    CupertinoIcons.sun_min,
+                    color: (provider.isDarkView) ? Colors.white : null,
+                  ),
                 ),
                 (Provider.of<MainProvider>(context, listen: false).isIOS)
                     ? CupertinoSwitch(
@@ -104,6 +109,8 @@ class _MyAppState extends State<MyApp> {
                         value: Provider.of<MainProvider>(context).isIOS,
                       )
                     : Switch(
+                        inactiveThumbColor:
+                            (provider.isDarkView) ? Colors.white : null,
                         value: Provider.of<MainProvider>(context, listen: false)
                             .isIOS,
                         onChanged: (val) {

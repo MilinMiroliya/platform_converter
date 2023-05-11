@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainProvider extends ChangeNotifier {
-  bool isIOS = true;
-  late bool isDarkView = true;
+  bool isIOS = false;
+  bool isDarkView = false;
 
   String selectedDate = "Pick Date";
   String selectedTime = "Pick Time";
