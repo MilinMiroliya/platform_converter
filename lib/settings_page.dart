@@ -131,15 +131,15 @@ class _SettingsPageState extends State<SettingsPage> {
                               );
                             },
                             child: CircleAvatar(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: const Color(0xffeadeff),
                               radius: 70,
                               foregroundImage: (Global.profileImage != null)
                                   ? FileImage(Global.profileImage as File)
                                   : null,
                               child: const Icon(
-                                CupertinoIcons.camera,
+                                Icons.add_a_photo_outlined,
                                 size: 40,
-                                color: Colors.white,
+                                color: Colors.purple,
                               ),
                             ),
                           ),

@@ -207,7 +207,6 @@ class _AddContactPageState extends State<AddContactPage> {
                             Global.chat = val;
                           },
                           controller: chatsConversationController,
-                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
@@ -257,7 +256,9 @@ class _AddContactPageState extends State<AddContactPage> {
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        provider.selectedDate,
+                        (provider.selectedDate == "Pick Date")
+                            ? provider.selectedDate.substring(0, 9)
+                            : provider.selectedDate.substring(0, 10),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
@@ -294,9 +295,9 @@ class _AddContactPageState extends State<AddContactPage> {
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        (provider.selectedDate == "Pick Date")
-                            ? provider.selectedDate.substring(0, 9)
-                            : provider.selectedDate.substring(0, 10),
+                        (provider.selectedTime == "Pick Time")
+                            ? provider.selectedTime.substring(0, 9)
+                            : provider.selectedTime.substring(12, 16),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
@@ -322,26 +323,18 @@ class _AddContactPageState extends State<AddContactPage> {
                       );
                       Global.allContacts.add(c1);
                     }
+                    print(Global.firstName);
+                    print(Global.phone);
+                    print(Global.chat);
+                    print(Global.image);
 
                     setState(
                       () {
                         addContactKey.currentState!.reset();
 
                         firstNameController.clear();
-
                         phoneNumberController.clear();
                         chatsConversationController.clear();
-
-                        print(Global.firstName);
-                        print(Global.phone);
-                        print(Global.chat);
-                        print(Global.image);
-
-                        Global.firstName = null;
-                        Global.phone = null;
-                        Global.chat = null;
-                        provider.selectedDate;
-                        provider.selectedTime;
                       },
                     );
                   },

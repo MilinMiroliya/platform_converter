@@ -37,9 +37,9 @@ class _SettingsPageIOSState extends State<SettingsPageIOS> {
                     }),
                 title: const Text("Profile"),
                 leading: Icon(
-                  Icons.person,
+                  CupertinoIcons.person,
                   size: 30,
-                  color: (provider.isDarkView) ? Colors.white : null,
+                  color: Colors.blue,
                 ),
                 subtitle: const Text("Update Profile Data"),
               ),
@@ -277,9 +277,9 @@ class _SettingsPageIOSState extends State<SettingsPageIOS> {
                 ),
                 title: const Text("Theme"),
                 leading: Icon(
-                  Icons.wb_sunny_outlined,
+                  CupertinoIcons.sun_min,
                   size: 30,
-                  color: (provider.isDarkView) ? Colors.white : null,
+                  color: Colors.blue,
                 ),
                 subtitle: const Text("Change Theme"),
               ),

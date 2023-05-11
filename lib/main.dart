@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:platform_converter/calls_page_ios.dart';
 import 'package:platform_converter/settings_page.dart';
 import 'package:platform_converter/settings_page_ios.dart';
 import 'package:provider/provider.dart';
@@ -127,7 +128,9 @@ class _MyAppState extends State<MyApp> {
                     ? AddContactPageIOS()
                     : AddContactPage(),
                 ChatsPage(),
-                CallsPage(),
+                (Provider.of<MainProvider>(context, listen: false).isIOS)
+                    ? CallsPageIOS()
+                    : CallsPage(),
                 (Provider.of<MainProvider>(context, listen: false).isIOS)
                     ? SettingsPageIOS()
                     : SettingsPage(),

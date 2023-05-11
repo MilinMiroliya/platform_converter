@@ -1,17 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'globals/utils.dart';
 import 'main_provider.dart';
 
-class CallsPage extends StatefulWidget {
-  const CallsPage({super.key});
+class CallsPageIOS extends StatefulWidget {
+  const CallsPageIOS({super.key});
 
   @override
-  State<CallsPage> createState() => _CallsPageState();
+  State<CallsPageIOS> createState() => _CallsPageIOSState();
 }
 
-class _CallsPageState extends State<CallsPage> {
+class _CallsPageIOSState extends State<CallsPageIOS> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MainProvider>(
@@ -42,7 +43,7 @@ class _CallsPageState extends State<CallsPage> {
                           padding: const EdgeInsets.all(15),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withOpacity(0.15),
                           ),
                           child: Row(
                             children: [
@@ -96,10 +97,8 @@ class _CallsPageState extends State<CallsPage> {
                                   });
                                 },
                                 icon: Icon(
-                                  Icons.call,
-                                  color: (provider.isDarkView)
-                                      ? Colors.white
-                                      : Colors.green,
+                                  CupertinoIcons.phone,
+                                  color: Colors.blue,
                                   size: 30,
                                 ),
                               ),
