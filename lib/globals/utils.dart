@@ -11,4 +11,5 @@ class Global {
   static String? profileName;
 
   static List<Contact> allContacts = [];
+  static List<Contact> allChats = [];
 }

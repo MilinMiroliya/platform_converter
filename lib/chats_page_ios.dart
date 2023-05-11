@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 
 import 'globals/utils.dart';
 
-class ChatsPage extends StatefulWidget {
+class ChatsPageIOS extends StatefulWidget {
   @override
-  State<ChatsPage> createState() => _ChatsPageState();
+  State<ChatsPageIOS> createState() => _ChatsPageIOSState();
 }
 
-class _ChatsPageState extends State<ChatsPage> {
+class _ChatsPageIOSState extends State<ChatsPageIOS> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MainProvider>(
@@ -71,7 +71,7 @@ class _ChatsPageState extends State<ChatsPage> {
                                           ),
                                           onPressed: () {},
                                         ),
-                                        MaterialButton(
+                                        CupertinoButton(
                                           child: Icon(
                                             CupertinoIcons.delete,
                                             color: Colors.blue,

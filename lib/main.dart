@@ -8,6 +8,7 @@ import 'add_contact_page.dart';
 import 'add_contact_page_ios.dart';
 import 'calls_page.dart';
 import 'chats_page.dart';
+import 'chats_page_ios.dart';
 import 'main_provider.dart';
 
 void main() {
@@ -127,7 +128,9 @@ class _MyAppState extends State<MyApp> {
                 (Provider.of<MainProvider>(context, listen: false).isIOS)
                     ? AddContactPageIOS()
                     : AddContactPage(),
-                ChatsPage(),
+                (Provider.of<MainProvider>(context, listen: false).isIOS)
+                    ? ChatsPageIOS()
+                    : ChatsPage(),
                 (Provider.of<MainProvider>(context, listen: false).isIOS)
                     ? CallsPageIOS()
                     : CallsPage(),

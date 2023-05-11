@@ -295,9 +295,10 @@ class _AddContactPageState extends State<AddContactPage> {
                     Container(
                       alignment: Alignment.center,
                       child: Text(
+                        // provider.selectedTime,
                         (provider.selectedTime == "Pick Time")
                             ? provider.selectedTime.substring(0, 9)
-                            : provider.selectedTime.substring(12, 16),
+                            : provider.selectedTime.substring(10, 15),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
