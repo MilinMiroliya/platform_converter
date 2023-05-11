@@ -45,36 +45,41 @@ class _ChatsPageState extends State<ChatsPage> {
                                       width: 100,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Colors.grey.withOpacity(0.1),
+                                        color: Colors.grey,
                                       ),
                                       child: Text(
                                         "${e.firstName![0].toUpperCase()}",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headlineLarge,
+                                            .headlineLarge!
+                                            .copyWith(color: Colors.black),
                                       ),
                                     ),
                                     Text(
                                       "${e.firstName}",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .headlineSmall,
+                                          .headlineSmall!
+                                          .copyWith(color: Colors.black),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        CupertinoButton(
+                                        MaterialButton(
                                           child: Icon(
-                                            CupertinoIcons.pencil,
-                                            color: Colors.blue,
+                                            Icons.edit,
+                                            color: Colors.black,
                                           ),
                                           onPressed: () {},
                                         ),
                                         MaterialButton(
                                           child: Icon(
-                                            CupertinoIcons.delete,
-                                            color: Colors.blue,
+                                            Icons.delete,
+                                            color: Colors.black,
                                           ),
                                           onPressed: () {},
                                         ),

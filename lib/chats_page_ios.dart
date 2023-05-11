@@ -60,6 +60,9 @@ class _ChatsPageIOSState extends State<ChatsPageIOS> {
                                           .textTheme
                                           .headlineSmall,
                                     ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
