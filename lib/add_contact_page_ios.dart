@@ -253,9 +253,11 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                               maximumYear: 3000,
                               mode: CupertinoDatePickerMode.date,
                               onDateTimeChanged: (val) {
-                                setState(() {
-                                  provider.selectedDate = val.toString();
-                                });
+                                setState(
+                                  () {
+                                    provider.selectedDate = val.toString();
+                                  },
+                                );
                                 // print(provider.selectedDate);
                               },
                             ),
@@ -289,16 +291,35 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                     IconButton(
                       icon: const Icon(CupertinoIcons.clock),
                       onPressed: () {
-                        showTimePicker(
+                        showCupertinoModalPopup(
                           context: context,
-                          initialTime: TimeOfDay.now(),
-                        ).then((value) => provider.setSelectedTime(value!));
+                          builder: (context) => Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                            ),
+                            height: 300,
+                            width: double.infinity,
+                            child: CupertinoDatePicker(
+                              initialDateTime: DateTime.now(),
+                              use24hFormat: false,
+                              mode: CupertinoDatePickerMode.time,
+                              onDateTimeChanged: (time) => setState(
+                                () {
+                                  provider.selectedTime = time.toString();
+                                },
+                              ),
+                            ),
+                          ),
+                        );
                       },
                     ),
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        provider.selectedTime,
+                        // provider.selectedTime,
+                        (provider.selectedTime == "Pick Time")
+                            ? provider.selectedTime.substring(0, 9)
+                            : provider.selectedTime.substring(12, 16),
                         style: TextStyle(
                           color:
                               (Provider.of<MainProvider>(context, listen: false)
