@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_converter/add_contact_page.dart';
-import 'package:platform_converter/calls_page.dart';
-import 'package:platform_converter/chats_page.dart';
 import 'package:platform_converter/settings_page.dart';
 import 'package:provider/provider.dart';
+import 'add_contact_page.dart';
+import 'add_contact_page_ios.dart';
+import 'calls_page.dart';
+import 'chats_page.dart';
 import 'main_provider.dart';
 
 void main() {
@@ -109,7 +110,12 @@ class _MyAppState extends State<MyApp> {
             ),
             body: TabBarView(
               children: [
-                ...provider.pageList,
+                (Provider.of<MainProvider>(context, listen: false).isIOS)
+                    ? AddContactPageIOS()
+                    : AddContactPage(),
+                ChatsPage(),
+                CallsPage(),
+                SettingsPage(),
               ],
             ),
           ),

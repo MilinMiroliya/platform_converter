@@ -1,18 +1,17 @@
 import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platform_converter/globals/utils.dart';
 import 'package:provider/provider.dart';
-
 import 'globals/models.dart';
 import 'main_provider.dart';
 
-class AddContactPage extends StatefulWidget {
-  const AddContactPage({Key? key}) : super(key: key);
+class AddContactPageIOS extends StatefulWidget {
+  const AddContactPageIOS({Key? key}) : super(key: key);
 
   @override
-  State<AddContactPage> createState() => _AddContactPageState();
+  State<AddContactPageIOS> createState() => _AddContactPageIOSState();
 }
 
 ImagePicker picker = ImagePicker();
@@ -29,11 +28,23 @@ TextStyle hintStyle = TextStyle(
   fontSize: 16,
 );
 
-class _AddContactPageState extends State<AddContactPage> {
+class _AddContactPageIOSState extends State<AddContactPageIOS> {
+  @override
+  void initState() {
+    super.initState();
+    firstNameController = TextEditingController(text: 'Enter First Name');
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<MainProvider>(
+    return CupertinoPageScaffold(
+      child: Consumer<MainProvider>(
         builder: (context, provider, child) => Container(
           child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
@@ -142,7 +153,14 @@ class _AddContactPageState extends State<AddContactPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextFormField(
+                        CupertinoTextFormFieldRow(
+                          controller: firstNameController,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
+                          ),
                           onSaved: (val) {
                             Global.firstName = val;
                           },
@@ -152,18 +170,12 @@ class _AddContactPageState extends State<AddContactPage> {
                             }
                             return null;
                           },
-                          controller: firstNameController,
                           textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Full Name",
-                            icon: Icon(Icons.person),
-                          ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        TextFormField(
+                        CupertinoTextFormFieldRow(
                           onSaved: (val) {
                             Global.phone = val;
                           },
@@ -179,26 +191,28 @@ class _AddContactPageState extends State<AddContactPage> {
                           controller: phoneNumberController,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            icon: Icon(Icons.phone),
-                            border: OutlineInputBorder(),
-                            hintText: "Phone Number",
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        TextFormField(
+                        CupertinoTextFormFieldRow(
                           onSaved: (val) {
                             Global.chat = val;
                           },
                           controller: chatsConversationController,
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Chat Conversation",
-                            icon: Icon(Icons.chat_outlined),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ],
@@ -211,7 +225,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 Row(
                   children: [
                     SizedBox(
-                      width: 5,
+                      width: 20,
                     ),
                     IconButton(
                       icon: Icon(Icons.calendar_month_rounded),
@@ -245,7 +259,7 @@ class _AddContactPageState extends State<AddContactPage> {
                 Row(
                   children: [
                     SizedBox(
-                      width: 5,
+                      width: 20,
                     ),
                     IconButton(
                       icon: const Icon(Icons.access_time_rounded),

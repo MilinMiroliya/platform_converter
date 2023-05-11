@@ -1,6 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:platform_converter/add_contact_page_ios.dart';
 import 'package:platform_converter/settings_page.dart';
-
 import 'add_contact_page.dart';
 import 'calls_page.dart';
 import 'chats_page.dart';
@@ -31,10 +32,9 @@ class MainProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Widget> pageList = [
-    AddContactPage(),
-    ChatsPage(),
-    CallsPage(),
-    SettingsPage(),
-  ];
+  shoIOSDatePicker() {
+    return CupertinoDatePicker(onDateTimeChanged: (val) {
+      this.selectedDate = val;
+    });
+  }
 }
