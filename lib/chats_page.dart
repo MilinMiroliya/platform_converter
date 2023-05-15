@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'globals/utils.dart';
 
 class ChatsPage extends StatefulWidget {
+  const ChatsPage({super.key});
+
   @override
   State<ChatsPage> createState() => _ChatsPageState();
 }

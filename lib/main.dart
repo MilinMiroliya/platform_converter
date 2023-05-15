@@ -21,22 +21,23 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  int currentIndex = 0;
+  int currentIndex = 1;
   List pageList = [
-    AddContactPageIOS(),
+    const AddContactPageIOS(),
     ChatsPageIOS(),
-    CallsPageIOS(),
-    SettingsPageIOS(),
+    const CallsPageIOS(),
+    const SettingsPageIOS(),
   ];
   void onTap(int index) {
     setState(() {
-      this.currentIndex = index;
+      currentIndex = index;
     });
   }
 
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
       home: Consumer<MainProvider>(
         builder: (context, provider, child) => DefaultTabController(
           length: 4,
-          initialIndex: 1,
+          initialIndex: currentIndex,
           child: Scaffold(
             appBar: AppBar(
               bottom: (!provider.isIOS)
