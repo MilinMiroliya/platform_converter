@@ -40,75 +40,6 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                 alignment: Alignment.bottomRight,
                 children: [
                   GestureDetector(
-                    // onTap: () async {
-                    //   showDialog(
-                    //     context: context,
-                    //     builder: (context) {
-                    //       return AlertDialog(
-                    //         title: const Align(
-                    //           alignment: Alignment.topLeft,
-                    //           child: Text("Options"),
-                    //         ),
-                    //         content: const Text(
-                    //           "Choose an option to add photo",
-                    //         ),
-                    //         icon: Align(
-                    //           alignment: Alignment.topRight,
-                    //           child: IconButton(
-                    //             onPressed: () {
-                    //               Navigator.of(context).pop();
-                    //             },
-                    //             icon: const Icon(Icons.clear),
-                    //           ),
-                    //         ),
-                    //         actions: [
-                    //           Column(
-                    //             children: [
-                    //               Row(
-                    //                 mainAxisAlignment:
-                    //                     MainAxisAlignment.spaceEvenly,
-                    //                 children: [
-                    //                   ElevatedButton(
-                    //                     child: const Text(
-                    //                       "Camera",
-                    //                     ),
-                    //                     onPressed: () async {
-                    //                       XFile? img = await picker.pickImage(
-                    //                         source: ImageSource.camera,
-                    //                       );
-                    //
-                    //                       setState(() {
-                    //                         Global.image =
-                    //                             File(img!.path as String);
-                    //                       });
-                    //
-                    //                       Navigator.of(context).pop();
-                    //                     },
-                    //                   ),
-                    //                   ElevatedButton(
-                    //                     child: Text("Gallery"),
-                    //                     onPressed: () async {
-                    //                       XFile? img = await picker.pickImage(
-                    //                         source: ImageSource.gallery,
-                    //                       );
-                    //
-                    //                       setState(() {
-                    //                         Global.image =
-                    //                             File(img!.path as String);
-                    //                       });
-                    //
-                    //                       Navigator.of(context).pop();
-                    //                     },
-                    //                   )
-                    //                 ],
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ],
-                    //       );
-                    //     },
-                    //   );
-                    // },
                     onTap: () {
                       showCupertinoModalPopup(
                         context: context,
@@ -376,7 +307,7 @@ class _AddContactPageIOSState extends State<AddContactPageIOS> {
                       // provider.selectedTime,
                       (provider.selectedTime == "Pick Time")
                           ? provider.selectedTime.substring(0, 9)
-                          : provider.selectedTime.substring(10, 15),
+                          : provider.selectedTime.substring(11, 16),
                       style: TextStyle(
                         color:
                             (Provider.of<MainProvider>(context, listen: false)

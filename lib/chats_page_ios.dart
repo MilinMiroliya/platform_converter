@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'globals/utils.dart';
 
 class ChatsPageIOS extends StatefulWidget {
+  const ChatsPageIOS({super.key});
+
   @override
   State<ChatsPageIOS> createState() => _ChatsPageIOSState();
 }

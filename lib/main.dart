@@ -15,7 +15,7 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => MainProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -31,14 +31,16 @@ class _MyAppState extends State<MyApp> {
   int currentIndex = 1;
   List pageList = [
     const AddContactPageIOS(),
-    ChatsPageIOS(),
+    const ChatsPageIOS(),
     const CallsPageIOS(),
     const SettingsPageIOS(),
   ];
   void onTap(int index) {
-    setState(() {
-      currentIndex = index;
-    });
+    setState(
+      () {
+        currentIndex = index;
+      },
+    );
   }
 
   @override
@@ -144,17 +146,17 @@ class _MyAppState extends State<MyApp> {
                 ? TabBarView(
                     children: [
                       (Provider.of<MainProvider>(context, listen: false).isIOS)
-                          ? AddContactPageIOS()
-                          : AddContactPage(),
+                          ? const AddContactPageIOS()
+                          : const AddContactPage(),
                       (Provider.of<MainProvider>(context, listen: false).isIOS)
-                          ? ChatsPageIOS()
-                          : ChatsPage(),
+                          ? const ChatsPageIOS()
+                          : const ChatsPage(),
                       (Provider.of<MainProvider>(context, listen: false).isIOS)
-                          ? CallsPageIOS()
-                          : CallsPage(),
+                          ? const CallsPageIOS()
+                          : const CallsPage(),
                       (Provider.of<MainProvider>(context, listen: false).isIOS)
-                          ? SettingsPageIOS()
-                          : SettingsPage(),
+                          ? const SettingsPageIOS()
+                          : const SettingsPage(),
                     ],
                   )
                 : pageList[currentIndex],

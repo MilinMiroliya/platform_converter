@@ -51,75 +51,71 @@ class _SettingsPageIOSState extends State<SettingsPageIOS> {
                             height: 20,
                           ),
                           GestureDetector(
-                            onTap: () async {
-                              showDialog(
+                            onTap: () {
+                              showCupertinoModalPopup(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text("Options"),
-                                    ),
-                                    content: const Text(
-                                      "Choose an option to add photo",
-                                    ),
-                                    icon: Align(
-                                      alignment: Alignment.topRight,
-                                      child: IconButton(
-                                        onPressed: () {
+                                builder: (context) => Container(
+                                  color: Colors.white,
+                                  height: 200,
+                                  width: double.infinity,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CupertinoButton(
+                                        child: Text(
+                                          "Camera",
+                                          style: TextStyle(
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                        onPressed: () async {
+                                          XFile? img = await picker.pickImage(
+                                            source: ImageSource.camera,
+                                          );
+
+                                          setState(() {
+                                            Global.profileImage =
+                                                File(img!.path as String);
+                                          });
+
                                           Navigator.of(context).pop();
                                         },
-                                        icon: const Icon(Icons.clear),
                                       ),
-                                    ),
-                                    actions: [
-                                      Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              ElevatedButton(
-                                                child: Text(
-                                                  "Camera",
-                                                ),
-                                                onPressed: () async {
-                                                  XFile? img =
-                                                      await picker.pickImage(
-                                                    source: ImageSource.camera,
-                                                  );
-
-                                                  setState(() {
-                                                    Global.profileImage = File(
-                                                        img!.path as String);
-                                                  });
-
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                              ElevatedButton(
-                                                child: Text("Gallery"),
-                                                onPressed: () async {
-                                                  XFile? img =
-                                                      await picker.pickImage(
-                                                    source: ImageSource.gallery,
-                                                  );
-
-                                                  setState(() {
-                                                    Global.profileImage = File(
-                                                        img!.path as String);
-                                                  });
-
-                                                  Navigator.of(context).pop();
-                                                },
-                                              )
-                                            ],
+                                      CupertinoButton(
+                                        child: Text(
+                                          "Photos",
+                                          style: TextStyle(
+                                            color: Colors.blue,
                                           ),
-                                        ],
+                                        ),
+                                        onPressed: () async {
+                                          XFile? img = await picker.pickImage(
+                                            source: ImageSource.gallery,
+                                          );
+
+                                          setState(() {
+                                            Global.profileImage =
+                                                File(img!.path as String);
+                                          });
+
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      CupertinoButton(
+                                        child: Text(
+                                          "Close",
+                                          style: TextStyle(
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        alignment: AlignmentDirectional.topEnd,
                                       ),
                                     ],
-                                  );
-                                },
+                                  ),
+                                ),
                               );
                             },
                             child: CircleAvatar(
